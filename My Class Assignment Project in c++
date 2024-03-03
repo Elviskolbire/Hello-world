@@ -1,0 +1,107 @@
+#include <iostream>
+#include <iomanip>
+#include <cctype>
+int main()
+{
+	//Declearing my variables to be used in this program. 
+	float amount_customer_needs = 0;
+	float interest_rate =0;
+	float loan_duration = 0;
+	char Exit;
+	int rate= 0;
+	float monthly_payment;
+	std::cout << "***DISCOUNT INSTALLMENT LOAN***\n\n";//just for decorating 
+
+	 /*Asking for user input for customer 
+	  //amount needed, loan duration and 
+		//interest_rate*/
+		do{
+		std::cout << "Please enter the amount customer needs to borrow : \n";
+		do
+		{
+			std::cin >> amount_customer_needs;
+			std::cin.clear();
+			fflush(stdin);
+			if (amount_customer_needs < 0)
+			{
+				std::cout << "Please enter a valid amount!: \n";
+			}
+			else
+			{
+				break;
+			}
+		} while (amount_customer_needs <= 0);
+
+		std::cout << "\nEnter the interest rate of the loan from ( 1 to 100)\n"
+				  << "NOTE: Enter only whole Numbers from {1 to 100}''\n";
+		//checking if the user has entered a valid number and clearing the input buffer 
+	do{
+			std ::cin >> interest_rate;
+					std::cin.clear();
+			fflush(stdin);
+
+			if (interest_rate <= 0 || interest_rate > 100)
+			{
+				std::cout << "Please enter valid interest rate!: \n";
+			}
+
+			else
+			{
+				break;
+			}
+		} while (interest_rate <= 0 || interest_rate > 100);
+
+		std::cout << "\nEnter  loan duration of Customer in years: \n";
+	//checking if the user has entered a valid number and clearing the input buffer.
+			do
+		{
+			std::cin >> loan_duration;
+					std::cin.clear();
+			fflush(stdin);
+
+			if (loan_duration <= 0)
+			{
+				std::cout << "Please enter a valid  loan duration in years!!: \n";
+			}
+
+			else
+			{
+				break;
+			}
+		} while (loan_duration <= 0);
+		
+		//giving all the formulas to calculate for face value 
+	float interest_rate_in_decimals = interest_rate / 100;
+		float loan_interest_amount_per_year = amount_customer_needs * interest_rate_in_decimals;
+		float total_interest_owed = loan_interest_amount_per_year * loan_duration;
+		
+
+		float face_value = amount_customer_needs + total_interest_owed;
+
+		std::cout << "The customer FACE VALUE is Ghc" << std::setprecision(2) << std::fixed << face_value << std::endl;
+		
+ // checking to calculate for the monthly payment amount. 
+		int loan_in_months = loan_duration * 12;
+	monthly_payment = face_value / loan_in_months;
+
+		std::cout << "\nCustomer monthly repayment is Ghc" << std::setprecision(2) << std::fixed << monthly_payment << "\n \n"
+				  << "Press 'x' to Exit or any key to continue \n";
+
+		std::cin >> Exit;
+
+	} while (Exit != 'x');//while loop to exit
+
+	std::cout << "\n |  GROUP 1 MEMBERS  | \n";
+	std::cout << " |-------------------|\n";
+	std::cout << " | 1. Bire Elvis Kolbire.    |\n";
+	std::cout << " | 2. Derrick Mintah.        |\n";
+	std::cout << " | 3. Aduku Prosper Mba.|\n";
+	std::cout << " | 3. Aduku Prosper Mba.|\n ";
+
+
+	std::cout << "\nThanks for your time@@@@\n";
+			  
+
+std::cout << "***END OF DISCOUNT INSTALLMENT LOAN***";
+	return 0;
+}
