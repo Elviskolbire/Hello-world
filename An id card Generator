@@ -1,0 +1,165 @@
+#include <iostream>
+#include <cctype>
+// A class to contain public details 
+class student
+{
+  public:
+	std::string name;
+	std::string program;
+	std::string id;
+	std::string nationality;
+//A method/Function inside class to ask of details 
+	void print()
+	{std::string details;
+		std::cout <<"Enter details of Card\n";
+		std::getline(std::cin, details);
+		
+			std::cout << "***********************\n";
+		std::cout << details <<"\n";
+		
+		std::cout << "***********************\n\n";
+	}
+	//Another function inside class to ask for a company or organisation code:
+	void user_unique_code(std::string &code)
+	{
+		std::cout << "Enter  company/Organisation  unique ID code without Spaces:\n";
+		std::getline(std::cin, code);
+	}
+};
+//Function Declearation 
+int iid(int flag, std::string code);
+
+int main(void)
+{
+	//List of all corresponding Variables and their data type:
+	std::string code;
+	int flag = 0;
+	std::string name;
+	std::string programme;
+	std::string nationality;
+	std::string company;
+	student student1;
+	char choi;
+
+	//DO WHILE LOOP and inner do while loop to repeat parts of  code	
+	do
+	{
+		std::cout << "Enter the name of Company/ Organisation / Institution/Industry\n";
+		std::getline(std::cin, company);
+
+		std::cout << "Enter  name : \n";
+		std::getline(std::cin, name);
+		std::cout << "Enter  Programme/Position: \n";
+		do
+		{
+			std::cout << "Choose below \n1. Programme\n2. Position\n3. Skip\n";
+			std::cin>> choi;
+		std::cin.ignore ();
+
+//switch statements to examine our choi:
+			switch (choi)
+			{
+			case '1':
+				std::cout << "Enter persons programme:\n";
+				std::getline(std::cin, programme);
+
+				break;
+			case '2':
+				std::cout << "Enter persons position:\n";
+				std::getline(std::cin, programme);
+
+				break;
+			case '3':
+				break;
+			default:
+				std::cout << "Invalid response!\n";
+				break;
+			}
+		} while (choi != '3'&& choi != '2' && choi != '1');
+
+			
+		std::cout << "Enter nationality: \n";
+		std::getline(std::cin, nationality);
+
+		student1.user_unique_code(code);
+//A condition to Exit our program 
+		std::string exit;
+		std::cout << "Do you want to proceed to generate ID Number? Y or yes/ no or N\n";
+		std::getline(std::cin, exit);
+		for (char &exit : exit)
+		{
+			exit = std::toupper(exit);
+		}
+
+		if (exit == "YES" || exit == "Y")
+		{
+				flag += 1;
+
+			student1.name = name;
+			student1.program = programme;
+			student1.nationality = nationality;
+
+			std::cout << "********"<<company << "********\n";
+
+			std::cout << "Name: " << student1.name << "\n";
+			if (choi== '2')
+				std::cout << "Position: " << student1.program << "\n";
+			else
+			{
+				std::cout << "Programme: " << student1.program << "\n";
+			}
+
+			std::cout << "Nationality: " << student1.nationality << "\n";
+
+			iid(flag, code);
+			
+			std::cout << "***********************\n\n";
+
+			student1.print();
+			std::string choice;
+//Condition to Generate more id cards
+			std::cout << "Do you want to  Generate another ID card? (Y or YES / No)\n";
+			std::getline(std::cin , choice);
+			for (char &choice : choice)
+				choice = std::toupper(choice);
+			if (choice == "YES" || choice == "Y")
+			{
+				continue;
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		else
+		{
+			return 0;
+		}
+
+	} while (true);
+
+	return 0;
+}
+ //Function to generate ID numbers
+int iid(int flag, std::string code)
+{
+	if (flag < 10 && flag > 0)
+	{
+		std::cout << "ID Number: " << code << "000" << flag << "\n";
+	}
+	else if (flag > 9 && flag <= 99)
+	{
+		std::cout << "ID Number: " << code << "00" << flag << "\n";
+	}
+	else if (flag < 1000 && flag > 99)
+	{
+		std::cout << "ID Number: " << code << "0" << flag << "\n";
+	}
+	else
+	{
+		std::cout << "ID Number: " << code << flag << "\n";
+	}
+
+	return 0;
+}
